@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/bodanc/gopl.io/chapter2/tempconv"
 )
 
 func main() {
@@ -12,23 +13,35 @@ func main() {
 	// p, of type *int, points to an unnamed int variable;
 	p := new(int)
 	fmt.Printf("%T %[1]v\n", p) // *int 0xc00001a080
-	fmt.Println(*p)             // 0
+	fmt.Println(*p)
 
 	*p = 2
-	fmt.Println(*p) // 2
+	fmt.Println(*p)
 
 	bla := new(string)
 	fmt.Printf("%T %[1]v\n", bla) // *string 0xc000108040
-	fmt.Println(*bla)             // ""
+	fmt.Println(*bla)
 
-	*bla = "bogdan"
-	fmt.Println(*bla) // "bogdan"
+	*bla = "watermelon"
+	fmt.Println(*bla) // "watermelon"
 
 	myNumber := new(int)
 	fmt.Printf("%T\n", myNumber)
 
-	fmt.Println("gcd of 20 and 15 is:", gcd(20, 15))
-	fmt.Println("Fibonacci for 20:", fib(20))
+	fmt.Println(gcd(20, 15))
+	fmt.Println(fib(10))
+
+	myMap := map[string]int{"a": 1, "b": 2, "c": 3, "d": 4, "e": 5, "f": 6, "g": 7}
+	value1, ok := myMap["a"]
+	value2, ok := myMap["b"]
+	value3, ok := myMap["c"]
+	fmt.Println(value1, ok) // 1 true
+	fmt.Println(value2, ok) // 2 true
+	fmt.Println(value3, ok) // 3 true
+
+	fmt.Printf("brrrr! it's %v", tempconv.AbsoluteZeroC)
+
+	fmt.Println(tempconv.CToF(tempconv.BoilingC))
 
 }
 
