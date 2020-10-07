@@ -3,9 +3,54 @@ package main
 import (
 	"fmt"
 	"github.com/bodanc/gopl.io/chapter2/tempconv"
+	"log"
+	"os"
 )
 
+var A int
+var B int
+var C int
+var cWD string
+
+// any .go file may contain any number of init() functions;
+func init() {
+	A = 1
+	fmt.Println("outer cWD:", cWD)
+}
+
+func init() {
+	B = 2
+}
+
+func init() {
+	C = 3
+}
+
+func init() {
+	cWD, err := os.Getwd()
+	if err != nil {
+		log.Fatalf("os.Getwd failed: %v\n", err)
+	}
+	fmt.Println("inner cWD:", cWD)
+}
+
 func main() {
+
+	d := A + B + C
+	fmt.Println(d)
+
+	// this example illustrates scope rules, not good style!
+	x := "hello!"
+	for i := 0; i < len(x); i++ {
+		x := x[i]
+		if x != '!' {
+			x := x + 'A' - 'a' // not equivalent to unicode.ToUpper()
+			fmt.Printf("%c", x)
+		}
+	}
+	fmt.Println()
+
+
 
 	// the expression new(T) creates an unnamed variable of type T, initializes it to the zero value of T, and returns
 	// its address, which is a value of type *T;
