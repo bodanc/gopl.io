@@ -10,6 +10,17 @@ const (
 	Planck   = 6.62606957e-34
 )
 
+func btoi(b bool) int {
+	if b {
+		return 1
+	}
+	return 0
+}
+
+func itob(i int) bool {
+	return i != 0
+}
+
 func main() {
 
 	var u uint8 = 255
@@ -43,11 +54,26 @@ func main() {
 	var dubious1 float64 = math.Sqrt(-1)
 	fmt.Println("math.Sqrt(-1) = ", dubious1)
 
-
 	maxF32 := math.MaxFloat32
 	fmt.Println("maxFloat32:", maxF32)
 
 	maxF64 := math.MaxFloat64
 	fmt.Println("maxFloat64:", maxF64)
+
+	// the built-in function complex() creates a complex number from its real and imaginary components
+	var xCmpl complex128 = complex(1, 2) // (1+2i)
+	var yCmpl complex128 = complex(3, 4) // (3+4i)
+	fmt.Println(xCmpl * yCmpl)           // (-5+10i)
+
+	// the built-in functions real() and imag() extract the real and imaginary components of complex numbers
+	fmt.Println(real(xCmpl)) // 1
+	fmt.Println(imag(xCmpl)) // 2
+
+	fmt.Println(real(yCmpl)) // 3
+	fmt.Println(imag(yCmpl)) // 4
+
+	fmt.Println(real(xCmpl * yCmpl)) // -5
+	fmt.Println(imag(xCmpl * yCmpl)) // 10
+
 
 }
