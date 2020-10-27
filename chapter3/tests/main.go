@@ -21,6 +21,26 @@ func itob(i int) bool {
 	return i != 0
 }
 
+// test if the input string contains another string as a prefix without decoding the UTF-8 code points
+func HasPrefix(s, prefix string) bool {
+	return len(s) >= len(prefix) && s[:len(prefix)] == prefix
+}
+
+// test if the input string contains another string as a suffix, without decoding the UTF-8 code points
+func HasSuffix(s, suffix string) bool {
+	return len(s) >= len(suffix) && s[len(s)-len(suffix):] == suffix
+}
+
+// test if the input string contains a substring, without decoding the UTF-8 code points
+func Contains(s, substring string) bool {
+	for i := 0; i < len(s); i++ {
+		if HasPrefix(s[i:], substring) {
+			return true
+		}
+	}
+	return false
+}
+
 func main() {
 
 	var u uint8 = 255
@@ -75,5 +95,7 @@ func main() {
 	fmt.Println(real(xCmpl * yCmpl)) // -5
 	fmt.Println(imag(xCmpl * yCmpl)) // 10
 
+	strings()
+	stringsAndByteSlices()
 
 }
