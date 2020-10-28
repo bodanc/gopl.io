@@ -100,4 +100,31 @@ func main() {
 	integersToStrings()
 	testConstants()
 
+	var v Flags = FlagMulticast | FlagUp
+	fmt.Printf("%b %t\n", v, IsUp(v))
+
+	var vNew Flags = FlagUp | FlagLoopback | FlagPointToPoint | FlagMulticast
+	fmt.Printf("%b %t\n", vNew, IsUp(vNew))
+
+	SetBroadcast(&vNew)
+	fmt.Printf("%b %t\n", vNew, IsUp(vNew))
+
+	TurnDown(&vNew)
+	fmt.Printf("%b %t\n", vNew, IsUp(vNew))
+
+	fmt.Println(IsCast(v))
+
+	var fl Flags = FlagMulticast | FlagUp
+	fmt.Printf("%b %t\n", fl, IsUp(fl)) // 10001 true
+	TurnDown(&fl)
+	fmt.Printf("%b %t\n", fl, IsUp(fl)) // 10000 false
+	SetBroadcast(&fl)
+	fmt.Printf("%b %t\n", fl, IsUp(fl))   // 10010 false
+	fmt.Printf("%b %t\n", fl, IsCast(fl)) // 10010 true
+
+	fmt.Println(KiB)
+	fmt.Println(MiB)
+	fmt.Println(GiB)
+	fmt.Println(TiB)
+
 }
