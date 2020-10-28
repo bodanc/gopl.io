@@ -97,5 +97,7 @@ func main() {
 
 	strings()
 	stringsAndByteSlices()
+	integersToStrings()
+	testConstants()
 
 }

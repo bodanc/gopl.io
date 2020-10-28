@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"strconv"
 	"unicode/utf8"
 )
 
@@ -75,6 +77,42 @@ func strings() {
 
 func stringsAndByteSlices() {
 
+	// a string contains an array of bytes that, once created, is immutable
+	s := "abc"
+	// the conversion to a []byte allocates a new byte array, holding a copy of the bytes of 's' and
+	// yields a slice that references the entirety of that array
+	b := []byte(s)
 
+	fmt.Println(s) // abc
+	fmt.Println(b) // [97 98 99]
+
+	// the elements of a byte slice can be freely modified
+	b[0] = 100
+	fmt.Println(b) // [100 98 99]
+
+}
+
+func integersToStrings() {
+
+	x := 512
+	y := fmt.Sprintf("%d", x) // string '1234'
+
+	fmt.Println(y == strconv.Itoa(x))
+
+	// strconv.FormatInt() and strconv.FormatUint() can be used to format numbers in a different base
+	fmt.Println(strconv.FormatInt(int64(x), 2))   // 1000000000
+	fmt.Println(strconv.FormatUint(uint64(x), 2)) // 1000000000
+
+	u, err := strconv.Atoi("1234")
+	if err != nil {
+		log.Fatal(err)
+	}
+	v, err := strconv.ParseInt("1234", 10, 0)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Printf("%T %[1]v\n", u)
+	fmt.Printf("%T %[1]v\n", v)
 
 }
