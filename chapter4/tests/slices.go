@@ -2,6 +2,13 @@ package main
 
 import "fmt"
 
+// to remove an element from the middle of a slice, while preserving the order of the remaining elements, we can
+// use copy() to slide the higher-numbered elements down by one to fill in the gap;
+func remove(slice []int, i int) []int {
+	copy(slice[i:], slice[i+1:])
+	return slice[:len(slice)-1]
+}
+
 func slices() {
 
 	months := [...]string{1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June", 7: "July",
@@ -62,10 +69,43 @@ func slices() {
 	// the built-in append function appends items to slices;
 	var runes []rune
 	// the loop uses append() to build the slice of 16 runes encoded by the string literal;
-	for _, r := range "bogdan, eleonora" {
+	for _, r := range "hello" {
 		runes = append(runes, r)
 	}
 	// the %q verb prints a safely escaped single-quoted character literal;
 	fmt.Printf("%q\n", runes)
+
+	for _, r := range []rune("hello") { // built-in conversion of type []rune("string literal")
+		runes = append(runes, r)
+	}
+	fmt.Printf("%q\n", runes)
+
+	// the built-in append() lets us add more than one new element, and even a whole slice;
+	var x []int
+	x = append(x, 1)
+	x = append(x, 2, 3)
+	x = append(x, 4, 5, 6)
+	x = append(x, x...) // append the slice x
+	fmt.Println(x)
+
+	var sl = []string{"a", "b", "c", "d"}
+	fmt.Printf("len(sl): %d cap(sl): %d sl: %v\n", len(sl), cap(sl), sl) // len(sl): 4 cap(sl): 4
+	sl2 := []string{"e", "f"}
+	sl = append(sl, sl2...)
+	fmt.Printf("%v\n%[1]q\n", sl)
+	fmt.Printf("len(sl): %d cap(sl): %d sl: %v\n", len(sl), cap(sl), sl) // len(sl): 6 cap(sl): 8
+
+	// a slice can be used to implement a stack;
+	stack := []int{1, 2, 3, 4, 5, 6, 7, 8}
+	stack = append(stack, 9) // push 9 to the top of the stack
+	// the top of the stack is the last element;
+	top := stack[len(stack)-1]
+	fmt.Println(top) // 9
+	// we can shrink the stack by popping the last element;
+	stack = stack[:len(stack)-1]
+	fmt.Println(stack) // [1 2 3 4 5 6 7 8]
+
+	sRemove := []int{5, 6, 7, 8, 9}
+	fmt.Println(remove(sRemove, 1)) // [5 7 8 9]
 
 }
