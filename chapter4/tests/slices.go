@@ -62,10 +62,30 @@ func slices() {
 	// the built-in append function appends items to slices;
 	var runes []rune
 	// the loop uses append() to build the slice of 16 runes encoded by the string literal;
-	for _, r := range "bogdan, eleonora" {
+	for _, r := range "hello" {
 		runes = append(runes, r)
 	}
 	// the %q verb prints a safely escaped single-quoted character literal;
 	fmt.Printf("%q\n", runes)
+
+	for _, r := range []rune("hello") { // built-in conversion of type []rune("string literal")
+		runes = append(runes, r)
+	}
+	fmt.Printf("%q\n", runes)
+
+	// the built-in append() lets us add more than one new element, and even a whole slice;
+	var x []int
+	x = append(x, 1)
+	x = append(x, 2, 3)
+	x = append(x, 4, 5, 6)
+	x = append(x, x...) // append the slice x
+	fmt.Println(x)
+
+	var sl = []string{"a", "b", "c", "d"}
+	fmt.Printf("len(sl): %d cap(sl): %d sl: %v\n", len(sl), cap(sl), sl) // len(sl): 4 cap(sl): 4
+	sl2 := []string{"e", "f"}
+	sl = append(sl, sl2...)
+	fmt.Printf("%v\n%[1]q\n", sl)
+	fmt.Printf("len(sl): %d cap(sl): %d sl: %v\n", len(sl), cap(sl), sl) // len(sl): 6 cap(sl): 8
 
 }
