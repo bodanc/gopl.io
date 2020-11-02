@@ -36,9 +36,9 @@ func arrays() {
 	fmt.Println(GBP, symbol[GBP]) // 2 £
 	fmt.Println(RMB, symbol[RMB]) // 3 ¥
 
-	/*	for i, v := range symbol {
+	for i, v := range symbol {
 		fmt.Println(i, v)
-	}*/
+	}
 
 	myArray := [10]string{0: "a", 1: "b", 2: "c", 9: "j"}
 	for i, v := range myArray {
