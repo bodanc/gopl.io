@@ -16,7 +16,6 @@ func nonEmpty1(strings []string) []string {
 	return strings[:i]
 }
 
-//
 func nonEmpty2(strings []string) []string {
 
 	out := strings[:0] // zero-length slice of the original

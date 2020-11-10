@@ -11,7 +11,8 @@ const (
 
 func main() {
 
-	//arrays()
+	arrays()
 	slices()
+	maps()
 
 }
