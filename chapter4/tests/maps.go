@@ -123,4 +123,9 @@ func maps() {
 	// xValue != y[key]
 	fmt.Println(equalWrong(map[string]int{"A": 0}, map[string]int{"B": 1}))
 
+	addToMap := make(map[string]int)
+	addToMap["something"]++
+	addToMap["something"]++
+	fmt.Println(addToMap["something"])
+
 }
