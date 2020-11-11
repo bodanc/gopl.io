@@ -77,6 +77,20 @@ func arrays() {
 	zeroOutAlternative(&c4)
 	fmt.Printf("%x\n", c4)
 
+	h := [5]int{}
+	h[0]++
+	h[1]++
+	h[1]++
+	h[1]++
+	h[1]++
+	h[1]++
+	fmt.Print("\nindex\tcount\n")
+	for i, v := range h {
+		if i > 0 {
+			fmt.Printf("%d\t%d\n", i, v)
+		}
+	}
+
 }
 
 // zeroOut() zeroes out the content of a [32]byte array;
