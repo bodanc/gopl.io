@@ -18,11 +18,13 @@ const (
 
 func main() {
 
-	arrays()
-	slices()
+	//arrays()
+	//slices()
 
-	maps()
-	readRune()
+	//maps()
+	//readRune()
+
+	//structs()
 
 }
 

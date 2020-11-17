@@ -108,4 +108,7 @@ func slices() {
 	sRemove := []int{5, 6, 7, 8, 9}
 	fmt.Println(remove(sRemove, 1)) // [5 7 8 9]
 
+	mySlice := []int{1, 2, 3, 4, 5, 6, 7, 8, 9}
+	fmt.Println("mySlice[:0] >>", mySlice[:0])
+
 }
