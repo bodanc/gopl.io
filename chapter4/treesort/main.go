@@ -8,7 +8,7 @@ type tree struct {
 	left, right *tree
 }
 
-//Sort
+// Sort
 func Sort(values []int) {
 	var root *tree
 	for _, v := range values {

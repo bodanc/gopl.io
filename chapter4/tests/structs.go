@@ -17,7 +17,7 @@ type Employee struct {
 	ManagerID     int // no managers please; mentors instead!!!
 }
 
-type Point struct {
+type point struct {
 	x, y, z int
 }
 
@@ -58,14 +58,14 @@ func structs() {
 	fmt.Println(employeeOfTheMonth.Salary)
 	fmt.Println((*employeeOfTheMonth).Salary)
 
-	p := Point{1, 2, 3}
+	p := point{1, 2, 3}
 	fmt.Println(p)
-	p = Point{x: 64}
+	p = point{x: 64}
 	fmt.Println(p)
 
-	fmt.Println("Scale(factor: 10)", Scale(Point{10, 20, 30}, 10))
+	fmt.Println("Scale(factor: 10)", Scale(point{10, 20, 30}, 10))
 
-	fmt.Println("Scale(factor: 64)", Scale(Point{1, 2, 3}, 64))
+	fmt.Println("Scale(factor: 64)", Scale(point{1, 2, 3}, 64))
 
 	e := Employee{Salary: 5000}
 	bonus := Bonus(&e, 400)
@@ -74,8 +74,8 @@ func structs() {
 	AwardAnnualRaise(&e)
 	fmt.Println(e.Salary)
 
-	// Point pointer!
-	pp := &Point{56, 44, 82}
+	// point pointer!
+	pp := &point{56, 44, 82}
 	ScaleByReference(pp, 2)
 	fmt.Println(*pp)
 
@@ -84,17 +84,17 @@ func structs() {
 	hitCount[address{"www.bluenote.com", 80}]++
 	fmt.Printf("%v\n", hitCount[address{"www.bluenote.com", 80}])
 
-	addrPtr := &address{"bla.local", 443}
+	addrPtr := &address{"foo.local", 443}
 	fmt.Printf("%s %d\n", (*addrPtr).hostname, addrPtr.port)
 
 }
 
 // struct values can be passed as arguments to functions and returned from them
-func Scale(p Point, factor int) Point {
-	return Point{p.x * factor, p.y * factor, p.z * factor}
+func Scale(p point, factor int) point {
+	return point{p.x * factor, p.y * factor, p.z * factor}
 }
 
-func ScaleByReference(p *Point, factor int) {
+func ScaleByReference(p *point, factor int) {
 	p.x = p.x * factor
 	p.y = p.y * factor
 	p.z = p.z * factor

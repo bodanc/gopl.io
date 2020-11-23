@@ -12,22 +12,17 @@ func nonEmpty1(strings []string) []string {
 			i++
 		}
 	}
-
 	return strings[:i]
 }
 
 func nonEmpty2(strings []string) []string {
-
 	out := strings[:0] // zero-length slice of the original
-
 	for _, s := range strings {
 		if s != "" {
 			out = append(out, s)
 		}
 	}
-
 	return out
-
 }
 
 func main() {
