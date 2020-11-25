@@ -33,6 +33,10 @@ func main() {
 			Title: "Ladri Di Biciclette", Year: 1948, Color: false,
 			Actors: []string{"Enzo Staiola", "Lamberto Maggiorani"},
 		},
+		{
+			Title: "The Shining", Year: 1980, Color: true,
+			Actors: []string{"Jack Nicholson"},
+		},
 	}
 
 	// json.Marshal() converts a data structure to JSON and produces a []byte and an error
@@ -41,10 +45,11 @@ func main() {
 		log.Fatalf("JSON marshalling failed: %s", err)
 	}
 
-	fmt.Printf("%s\n\n", d)
+	fmt.Printf("%v\n\n", d) // prints a slice of bytes
+	fmt.Printf("%s\n\n", d) // prints an un-indented json object
 
 	// json.MarshalIndent() produces neatly indented output
-	dNew, err := json.MarshalIndent(films, "", "	")
+	dNew, err := json.MarshalIndent(films, "", "    ")
 	if err != nil {
 		log.Fatalf("JSON marshalling failed: %s", err)
 	}
@@ -56,5 +61,13 @@ func main() {
 		log.Fatalf("JSON unmarshalling failed: %s", err)
 	}
 	fmt.Println(titles[:])
+
+	// while converting a JSON object into a go data structure, the JSON object field 'released' will only map to
+	// a go struct field 'Released'
+	var titlesNew []struct{ released int }
+	if err := json.Unmarshal(dNew, &titlesNew); err != nil {
+		log.Fatalf("JSON unmarshalling failed: %s", err)
+	}
+	fmt.Println(titlesNew)
 
 }

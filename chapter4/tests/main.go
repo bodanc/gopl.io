@@ -26,6 +26,7 @@ func main() {
 
 	//structs()
 	//drawWheel()
+	booksJSON()
 
 }
 
