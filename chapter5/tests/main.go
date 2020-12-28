@@ -24,7 +24,7 @@ func main() {
 	fmt.Println(addSlice(s))
 
 	bogdan := Person{
-		Name: "Franz",
+		Name: "franz",
 		Age:  99,
 	}
 
@@ -54,5 +54,5 @@ func addSlice(a []int) int {
 }
 
 func changeName(p Person) {
-	p.Name += "Kafka"
+	p.Name += "kafka"
 }
