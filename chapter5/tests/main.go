@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"golang.org/x/net/html"
 	"math"
+	"net/http"
 )
 
 type Person struct {
@@ -55,4 +57,30 @@ func addSlice(a []int) int {
 
 func changeName(p Person) {
 	p.Name += "kafka"
+}
+
+// in a function with named results, the operands of a return statement may be omitted;
+// this is called a bare return;
+func CountWordsAndImages(url string) (words, images int, err error) { // named results
+	resp, err := http.Get(url)
+	if err != nil {
+		return // bare return
+	}
+
+	doc, err := html.Parse(resp.Body)
+	resp.Body.Close()
+	if err != nil {
+		err = fmt.Errorf("parsing HTML: %s", err)
+		return // bare return
+	}
+
+	words, images = someOtherFunc(doc)
+
+	// a bare return is shorthand for returning each of the named result variables in order;
+	return // bare return
+
+}
+
+func someOtherFunc(n *html.Node) (int, int) {
+	return 1, 2
 }
