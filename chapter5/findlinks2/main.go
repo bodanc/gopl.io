@@ -53,6 +53,8 @@ func findLinks2(url string) ([]string, error) { // returns the list of discovere
 	doc, err := html.Parse(resp.Body)
 	resp.Body.Close()
 	if err != nil {
+		// constructs a new error message containing relevant information: where did the error occur and the url of
+		// the document being parsed;
 		return nil, fmt.Errorf("parsing %s as HTML: %v", url, err)
 	}
 
