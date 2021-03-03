@@ -1,5 +1,5 @@
 // like curl, fetch prints the content found at each specified url;
-package main
+package fetch
 
 import (
 	"fmt"
@@ -8,10 +8,10 @@ import (
 	"os"
 )
 
-func main() {
+func Fetch() {
 
+	// os.Args of type []string will hold the command line arguments, starting with the program name itself;
 	for _, url := range os.Args[1:] {
-
 		// the http.Get() function makes an http request and, if there is no error, returns the result as an
 		// http.Response struct;
 		resp, err := http.Get(url)
@@ -32,7 +32,6 @@ func main() {
 		}
 
 		fmt.Printf("%s", b)
-
 	}
 
 }
